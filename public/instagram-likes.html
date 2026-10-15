@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robo View Machine — IG Post Likes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="page-instagram-likes">
+  <div class="bg-grid"></div>
+  <div class="bg-embers" aria-hidden="true"></div>
+  <div class="bg-glow igl-glow"></div>
+  <div class="igl-hearts" aria-hidden="true">
+    <span class="igl-heart h1">♥</span>
+    <span class="igl-heart h2">♥</span>
+    <span class="igl-heart h3">♥</span>
+    <span class="igl-heart h4">♥</span>
+    <span class="igl-heart h5">♥</span>
+  </div>
+
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark igl-mark"></span>
+      <div>
+        <h1>IG Post Likes</h1>
+        <p class="tag">Boost any Instagram post or reel — instant JAP delivery</p>
+      </div>
+    </div>
+    <div class="top-meta">
+      <div class="pill" id="modePill">DRY-RUN</div>
+      <div class="pill muted" id="balPill">balance —</div>
+      <div class="pill muted" id="svcPill">svc —</div>
+    </div>
+  </header>
+
+  
+  <nav class="desk-rail" aria-label="Desks">
+    <a href="/" title="Telegram views">Views</a>
+    <a href="/twitter" title="X / Twitter followers">X Followers</a>
+    <a href="/twitter-posts" title="X post likes & comments">X Posts</a>
+    <a href="/twitter-views" title="X post views">X Views</a>
+    <a href="/instagram" title="Instagram followers">IG Followers</a>
+    <a href="/instagram-likes" title="Instagram post likes" class="is-active">IG Likes</a>
+    <a href="/linkedin" title="LinkedIn followers">LinkedIn</a>
+    <a href="/youtube" title="YouTube">YouTube</a>
+    <a href="/fomo" title="FOMO followers">FOMO</a>
+    <a href="/m" title="Phone queue">Phone</a>
+  </nav>
+
+  <main class="layout igl-layout desk-immersive">
+    <section class="col">
+      <article class="panel igl-hero" id="heroPanel">
+        <div class="igl-hero-inner">
+          <div class="igl-hero-badge"><span class="igl-pulse-dot"></span> Post boost desk</div>
+          <h2 class="igl-hero-title">Drop likes on<br /><em>any post</em></h2>
+          <p class="igl-hero-sub">Paste a /p/ or /reel/ link. Pick a pack. Watch the counter climb.</p>
+          <div class="igl-hero-stats" id="heroStats">
+            <div><strong id="heroRate">$—</strong><span>/ 1k likes</span></div>
+            <div><strong>0–1h</strong><span>start time</span></div>
+            <div><strong>300k/d</strong><span>max speed</span></div>
+          </div>
+        </div>
+        <div class="igl-hero-visual" aria-hidden="true">
+          <div class="igl-phone">
+            <div class="igl-phone-bar"></div>
+            <div class="igl-phone-post"></div>
+            <div class="igl-phone-actions">
+              <span class="igl-like-ring"></span>
+              <span>♥</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel igl-boost-panel">
+        <div class="igl-boost-head">
+          <h2>Quick boost packs</h2>
+          <span class="igl-boost-tag" id="boostSvcTag">cheapest lane</span>
+        </div>
+        <p class="hint">One tap — sets service, quantity, scrolls to order.</p>
+        <div class="igl-boost-grid" id="boostGrid"></div>
+      </article>
+
+      <article class="panel tw-deal-panel" id="cheapDealPanel">
+        <div class="tw-deal-head">
+          <span class="tw-deal-badge igl-deal-badge">Cheapest</span>
+          <h2>Best price likes</h2>
+        </div>
+        <p class="hint" id="cheapDealHint">Lowest $/1k Instagram likes from JAP</p>
+        <div class="tw-deal-rate igl-deal-rate" id="cheapDealRate">$— <span>/ 1k</span></div>
+        <div class="tw-deal-meta" id="cheapDealMeta">Loading…</div>
+        <div class="tw-deal-prices igl-deal-prices" id="cheapDealPrices"></div>
+        <button type="button" class="btn primary" id="useCheapBtn">Use cheapest service</button>
+      </article>
+
+      <article class="panel igl-instant-hero" id="instantDealPanel">
+        <div class="igl-instant-orb" aria-hidden="true"></div>
+        <div class="igl-instant-top">
+          <span class="igl-instant-live"><i></i> Fast lane</span>
+          <span class="igl-instant-svc" id="instantSvcTag">svc —</span>
+        </div>
+        <h2 class="igl-instant-title">Instant Likes</h2>
+        <p class="igl-instant-sub" id="instantDealHint">
+          Starts within ~1 hour — cheapest among fast-start services.
+        </p>
+        <div class="igl-instant-rate-row">
+          <div class="tw-deal-rate" id="instantDealRate">$— <span>/ 1k</span></div>
+          <div class="igl-instant-stats" id="instantStats">
+            <span>⏱ 0–1h start</span>
+            <span>⚡ fast fill</span>
+          </div>
+        </div>
+        <div class="tw-deal-meta" id="instantDealMeta">Loading…</div>
+        <div class="igl-instant-packs" id="instantDealPrices"></div>
+        <div class="igl-instant-actions">
+          <button type="button" class="btn primary igl-instant-cta" id="useInstantBtn">
+            Use Instant Likes
+          </button>
+          <button type="button" class="btn ghost igl-instant-order" id="orderInstantBtn">
+            Select &amp; scroll to order
+          </button>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Order likes</h2>
+        <p class="hint">Post or reel URL only — not a profile link. Same Live / Dry-run gate as other desks.</p>
+        <form id="orderForm" class="stack">
+          <label>
+            Instagram post URL
+            <input
+              name="link"
+              id="postInput"
+              type="url"
+              required
+              spellcheck="false"
+              autocomplete="off"
+              placeholder="https://www.instagram.com/p/ABC123/ or /reel/ABC123/"
+            />
+          </label>
+          <label>
+            Service
+            <select name="serviceId" id="serviceSelect">
+              <option value="">Loading services…</option>
+            </select>
+          </label>
+          <div class="igl-svc-meta" id="svcMeta">—</div>
+          <div class="tw-cost-card igl-cost-card">
+            <div class="row-between">
+              <h3 class="tw-cost-title">Cost by quantity</h3>
+              <span class="muted-sm" id="costRateLabel">$— / 1k</span>
+            </div>
+            <div class="table-wrap compact tw-cost-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Likes</th>
+                    <th>Est. cost</th>
+                  </tr>
+                </thead>
+                <tbody id="costBody">
+                  <tr><td colspan="2" class="muted-sm">Pick a service…</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="footer-note" id="costFooter">Click a row to set quantity</p>
+          </div>
+          <label>
+            Quantity
+            <input name="quantity" id="qtyInput" type="number" min="10" step="1" value="100" required />
+          </label>
+          <label>
+            Note <span class="opt">(optional)</span>
+            <input name="note" type="text" maxlength="120" placeholder="campaign label, post name…" />
+          </label>
+          <button type="submit" class="btn primary igl-order-btn" id="orderBtn">
+            <span class="igl-btn-heart">♥</span> Place likes order
+          </button>
+        </form>
+        <p id="formMsg" class="msg" hidden></p>
+      </article>
+
+      <article class="panel controls-panel">
+        <div class="row-between">
+          <h2>Controls</h2>
+          <span class="ctrl-mode-badge" id="ctrlModeBadge">DRY-RUN</span>
+        </div>
+        <div class="stack tight">
+          <label class="switch-row">
+            <span>
+              <strong>Live mode</strong>
+              <small>Off = dry-run (safe). On = real JAP spend for likes.</small>
+            </span>
+            <span class="toggle">
+              <input type="checkbox" id="liveToggle" role="switch" aria-label="Live mode" />
+              <span class="toggle-ui" aria-hidden="true"><span class="toggle-knob"></span></span>
+            </span>
+          </label>
+          <div class="ctrl-meta">
+            <div><span>Default svc</span><b id="ctrlDefaultSvc">—</b></div>
+            <div><span>Last post</span><b id="ctrlPost">—</b></div>
+            <div><span>Est. cost</span><b id="ctrlCost">—</b></div>
+          </div>
+          <div class="btn-row ctrl-actions">
+            <button type="button" class="btn ghost sm" id="savePostBtn">Save post URL</button>
+            <button type="button" class="btn ghost sm" id="refreshBtn">Refresh</button>
+          </div>
+          <p id="ctrlMsg" class="msg" hidden></p>
+        </div>
+      </article>
+
+      <article class="panel stats-panel">
+        <h2>Totals</h2>
+        <div class="stat-grid">
+          <div class="stat"><span class="n" id="sOrders">0</span><span class="l">orders</span></div>
+          <div class="stat igl-stat-likes"><span class="n" id="sLikes">0</span><span class="l">likes</span></div>
+          <div class="stat"><span class="n" id="sLive">0</span><span class="l">live</span></div>
+          <div class="stat"><span class="n" id="sDry">0</span><span class="l">dry</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="col wide">
+      <article class="panel grow">
+        <div class="row-between">
+          <h2>Like orders</h2>
+          <div class="btn-row">
+            <span class="muted-sm" id="progressSyncLabel" hidden>Auto-sync on</span>
+            <button type="button" class="btn ghost sm" id="ordersRefreshBtn">Sync status</button>
+          </div>
+        </div>
+        <div class="order-filters">
+          <select id="orderModeFilter" title="Mode">
+            <option value="">All modes</option>
+            <option value="live">Live</option>
+            <option value="dry-run">Dry-run</option>
+          </select>
+          <select id="orderStatusFilter" title="Status">
+            <option value="">All status</option>
+            <option value="submitted">submitted</option>
+            <option value="simulated">simulated</option>
+            <option value="completed">completed</option>
+            <option value="in progress">in progress</option>
+            <option value="partial">partial</option>
+            <option value="failed">failed</option>
+          </select>
+          <input type="search" id="orderSearch" placeholder="Search post / order id…" />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Mode</th>
+                <th>Status</th>
+                <th>Progress</th>
+                <th>Qty</th>
+                <th>Service</th>
+                <th>JAP</th>
+                <th>Post</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+        <p class="footer-note" id="ordersFooter">No Instagram likes orders yet</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="/instagram-likes.js"></script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robo View Machine — Organic Drip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="page-views">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="bg-embers" aria-hidden="true"></div>
+
+  <header class="desk-hero">
+    <div class="desk-hero-row">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <h1 class="desk-wordmark"><span>Crimson Signal</span>Robo View Machine</h1>
+          <p class="tag">5 flows · @robogems → F4 · multi-post organic drip</p>
+        </div>
+      </div>
+      <div class="hero-status">
+        <div class="pill" id="modePill">DRY-RUN</div>
+        <div class="pill muted" id="balPill">balance —</div>
+        <div class="pill muted" id="livePill" title="Realtime stream">LIVE OFF</div>
+        <a class="pill muted" id="phonePill" href="/m" title="Phone queue → Supabase → views">PHONE OFF</a>
+        <div class="pill muted" id="tickPill">worker ok</div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="desk-rail" aria-label="Desks">
+    <a class="is-active" href="/" title="Telegram views">Views</a>
+    <a href="/twitter" title="X / Twitter followers">X Followers</a>
+    <a href="/twitter-posts" title="X post likes &amp; comments">X Posts</a>
+    <a href="/twitter-views" title="X post views">X Views</a>
+    <a href="/instagram" title="Instagram followers">IG Followers</a>
+    <a href="/instagram-likes" title="Instagram post likes">IG Likes</a>
+    <a href="/linkedin" title="LinkedIn followers">LinkedIn</a>
+    <a href="/youtube" title="YouTube">YouTube</a>
+    <a href="/fomo" title="FOMO followers">FOMO</a>
+    <a href="/m" title="Phone queue">Phone</a>
+    <a href="http://127.0.0.1:3850" target="_blank" rel="noopener" title="Channel sniffer">Sniffer</a>
+  </nav>
+
+  <div id="hitToast" class="hit-toast" hidden></div>
+  <div id="tgBlockBanner" class="tg-block-banner" hidden></div>
+
+  <main class="layout desk-immersive" id="deskStage">
+    <section class="col">
+      <article class="panel">
+        <h2>Add posts</h2>
+        <p class="hint">One or many links (one per line). Phone: <a href="/m">/m</a> queues into Supabase — Ban / Robo / <strong>any other channel</strong>. <strong>@robogems always → Flow 4</strong>, <strong>@bansyndicate always → Flow 4</strong>. Other channels use the drip picker.</p>
+        <form id="addForm" class="stack">
+          <label>
+            Post link(s)
+            <textarea name="link" required rows="4" placeholder="https://t.me/bansyndicate/123&#10;https://t.me/robogems/45&#10;https://t.me/bansyndicate/124"></textarea>
+          </label>
+          <label>
+            Drip flow
+            <select name="flowId" id="flowSelect">
+              <option value="4" selected>Flow 4 · +56 → 536 (25 orders / 24h) — @bansyndicate + @robogems</option>
+              <option value="5">Flow 5 · +36 → 456 (22 orders / 24h)</option>
+              <option value="3">Flow 3 · +66 → 746 (35 orders / 24h)</option>
+              <option value="1">Flow 1 · +56 → 396 (18 orders / 24h)</option>
+              <option value="2">Flow 2 · +40 → 300 (14 orders / 24h)</option>
+            </select>
+          </label>
+          <label>
+            Start time <span class="opt">(optional — leave empty = now / match post go-live)</span>
+            <input name="startAt" type="datetime-local" />
+          </label>
+          <label>
+            Note <span class="opt">(optional, single post only)</span>
+            <input name="title" type="text" placeholder="optional label" />
+          </label>
+          <button type="submit" class="btn primary">Start drip on all</button>
+        </form>
+        <p id="formMsg" class="msg" hidden></p>
+      </article>
+
+      <article class="panel manual-boost-panel">
+        <h2>Manual boost</h2>
+        <p class="hint">Instant one-off views — fires to JAP on click (+20…+100). Uses fast service <span id="manualBoostSvc">#7381</span>, separate from drip.</p>
+        <div class="stack tight">
+          <label>
+            Post link
+            <input id="manualBoostLink" type="text" spellcheck="false" placeholder="https://t.me/bansyndicate/123" autocomplete="off" />
+          </label>
+          <div class="manual-qty-grid" id="manualQtyGrid">
+            <button type="button" class="btn ghost sm manual-qty-btn" data-qty="20">+20</button>
+            <button type="button" class="btn ghost sm manual-qty-btn" data-qty="30">+30</button>
+            <button type="button" class="btn ghost sm manual-qty-btn" data-qty="40">+40</button>
+            <button type="button" class="btn ghost sm manual-qty-btn" data-qty="50">+50</button>
+            <button type="button" class="btn ghost sm manual-qty-btn" data-qty="60">+60</button>
+            <button type="button" class="btn ghost sm manual-qty-btn" data-qty="70">+70</button>
+            <button type="button" class="btn ghost sm manual-qty-btn" data-qty="80">+80</button>
+            <button type="button" class="btn ghost sm manual-qty-btn" data-qty="90">+90</button>
+            <button type="button" class="btn ghost sm manual-qty-btn" data-qty="100">+100</button>
+          </div>
+          <p id="manualBoostMsg" class="msg" hidden></p>
+        </div>
+      </article>
+
+      <article class="panel controls-panel">
+        <div class="row-between">
+          <h2>Controls</h2>
+          <span class="ctrl-mode-badge" id="ctrlModeBadge">DRY-RUN</span>
+        </div>
+
+        <div class="ctrl-status" id="ctrlStatus">
+          <div class="ctrl-chip">
+            <span class="ctrl-dot" id="ctrlDotLive"></span>
+            <span class="ctrl-chip-l">Orders</span>
+            <strong id="ctrlLiveLabel">DRY</strong>
+          </div>
+          <div class="ctrl-chip">
+            <span class="ctrl-dot dim" id="ctrlDotAuto"></span>
+            <span class="ctrl-chip-l">Discover</span>
+            <strong id="ctrlAutoLabel">OFF</strong>
+          </div>
+          <div class="ctrl-chip">
+            <span class="ctrl-dot dim" id="ctrlDotRt"></span>
+            <span class="ctrl-chip-l">Website</span>
+            <strong id="ctrlRtLabel">—</strong>
+          </div>
+        </div>
+
+        <div class="ctrl-flow" id="ctrlFlow" title="@bansyndicate → Flow 4 · @robogems → Flow 4 · F1–F3/F5 for other channels">
+          <span title="@bansyndicate + @robogems auto + manual + sniffer">F4 <b>+56</b> · <b>536</b></span>
+          <span title="manual / other channels">F5 <b>+36</b> · <b>456</b></span>
+          <span>F3 <b>+66</b> · <b>746</b></span>
+          <span>F1 <b>+56</b> · <b>396</b></span>
+          <span>F2 <b>+40</b> · <b>300</b></span>
+          <span class="ctrl-cost" title="Approx JAP spend · F4 densest · F5 ~$0.20 · F1 ~$0.16 per post">
+            <span class="ctrl-cost-icon" aria-hidden="true">$</span>
+            <span class="ctrl-cost-body">
+              <b>0.16–0.43</b>
+              <em>per post · approx</em>
+            </span>
+          </span>
+        </div>
+
+        <div class="stack tight">
+          <label class="switch-row">
+            <span>
+              <strong>Live mode</strong>
+              <small>Off = dry-run (safe). On = real JAP balance spend.</small>
+            </span>
+            <span class="toggle">
+              <input type="checkbox" id="liveToggle" role="switch" aria-label="Live mode" />
+              <span class="toggle-ui" aria-hidden="true"><span class="toggle-knob"></span></span>
+            </span>
+          </label>
+          <label class="switch-row">
+            <span>
+              <strong>Auto-discover</strong>
+              <small id="autoDiscoverHint">Watch @bansyndicate (F4) + @robogems (F4) for new posts (last 1h) — auto + manual.</small>
+            </span>
+            <span class="toggle">
+              <input type="checkbox" id="autoToggle" role="switch" aria-label="Auto-discover" checked />
+              <span class="toggle-ui" aria-hidden="true"><span class="toggle-knob"></span></span>
+            </span>
+          </label>
+
+          <label class="ctrl-field">
+            Channels to watch
+            <div class="ctrl-channel-row">
+              <span class="at">@</span>
+              <input id="channelInput" type="text" spellcheck="false" placeholder="bansyndicate, robogems" autocomplete="off" />
+              <button type="button" class="btn ghost sm" id="saveChannelBtn">Save</button>
+            </div>
+            <div class="ctrl-channel-links" id="channelOpenLinks">
+              <a class="ctrl-channel-link" href="https://t.me/bansyndicate" target="_blank" rel="noopener">@bansyndicate ↗</a>
+              <a class="ctrl-channel-link" href="https://t.me/robogems" target="_blank" rel="noopener">@robogems ↗</a>
+            </div>
+          </label>
+
+          <div class="ctrl-meta">
+            <div><span>Last sync</span><b id="ctrlLastSync">—</b></div>
+            <div><span>Last hit</span><b id="ctrlLastHit">—</b></div>
+            <div><span>Service</span><b id="ctrlService">—</b></div>
+          </div>
+
+          <div class="btn-row ctrl-actions">
+            <button type="button" class="btn primary sm" id="syncBtn">Sync now</button>
+            <button type="button" class="btn ghost sm" id="refreshBtn">Refresh</button>
+            <button type="button" class="btn danger sm" id="stopAllBtn" title="Stop all drips and clear tracked posts">Stop all</button>
+          </div>
+          <p id="ctrlMsg" class="msg" hidden></p>
+        </div>
+      </article>
+
+      <article class="panel stats-panel">
+        <h2>Engine</h2>
+        <div class="stat-grid" id="statGrid">
+          <div class="stat"><span class="n" id="sActive">0</span><span class="l">active</span></div>
+          <div class="stat"><span class="n" id="sPending">0</span><span class="l">pending drops</span></div>
+          <div class="stat"><span class="n" id="sSent">0</span><span class="l">sent</span></div>
+          <div class="stat"><span class="n" id="sPosts">0</span><span class="l">posts</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="col wide">
+      <article class="panel grow">
+        <div class="row-between">
+          <h2>Tracked posts</h2>
+          <span class="muted-sm" id="channelLabel">@bansyndicate</span>
+        </div>
+        <div id="liveFeed" class="live-feed" aria-live="polite">
+          <div class="live-feed-empty">Waiting for channel hits…</div>
+        </div>
+        <div id="postsList" class="posts"></div>
+      </article>
+
+      <article class="panel">
+        <div class="row-between">
+          <h2>Order list</h2>
+          <div class="btn-row">
+            <button type="button" class="btn ghost sm" id="ordersCsvBtn" title="Download full list as CSV">Download CSV</button>
+            <button type="button" class="btn ghost sm" id="ordersRefreshBtn" title="Refresh JAP status for live orders">Sync status</button>
+          </div>
+        </div>
+        <div class="order-stats" id="orderStats">
+          <span><b id="osTotal">0</b> orders</span>
+          <span><b id="osViews">0</b> views</span>
+          <span><b id="osLive">0</b> live</span>
+          <span><b id="osDry">0</b> dry</span>
+        </div>
+        <div class="order-filters">
+          <select id="orderModeFilter" title="Mode">
+            <option value="">All modes</option>
+            <option value="live">Live</option>
+            <option value="dry-run">Dry-run</option>
+          </select>
+          <select id="orderStatusFilter" title="Status">
+            <option value="">All status</option>
+            <option value="submitted">submitted</option>
+            <option value="simulated">simulated</option>
+            <option value="completed">completed</option>
+            <option value="in_progress">in_progress</option>
+            <option value="partial">partial</option>
+            <option value="failed">failed</option>
+          </select>
+          <input type="search" id="orderSearch" placeholder="Search link / order id…" />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Mode</th>
+                <th>Status</th>
+                <th>Qty</th>
+                <th>#</th>
+                <th>Phase</th>
+                <th>JAP</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+        <p class="footer-note" id="ordersFooter">Full list loads end-to-end</p>
+      </article>
+    </section>
+
+    <section class="col">
+      <article class="panel grow">
+        <h2 id="curveTitle">Flow · 396</h2>
+        <p class="hint" id="compareHint">+56 instant · 17× +20 · 18 stamps · 24h</p>
+        <div class="table-wrap compact">
+          <table>
+            <thead>
+              <tr>
+                <th>When</th>
+                <th>Drop</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="curveBody"></tbody>
+          </table>
+        </div>
+        <p class="footer-note" id="curveTotal"></p>
+      </article>
+
+      <article class="panel">
+        <h2>Event log</h2>
+        <div id="events" class="events"></div>
+      </article>
+    </section>
+  </main>
+
+  <dialog id="detailDlg">
+    <form method="dialog" class="dlg">
+      <header>
+        <h3 id="dlgTitle">Post</h3>
+        <button type="submit" class="btn ghost sm">Close</button>
+      </header>
+      <div id="dlgBody" class="dlg-body"></div>
+    </form>
+  </dialog>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "robo-views-bot",
+  "version": "1.0.0",
+  "description": "Organic-style Telegram views drip feeder via JustAnotherPanel — Robo View Machine",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "sniffer": "node sniffer/server.js",
+    "dev:sniffer": "node --watch sniffer/server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "node-cron": "^3.0.3",
+    "undici": "^6.28.0"
+  },
+  "devDependencies": {
+    "supabase": "^2.115.0"
+  }
+}

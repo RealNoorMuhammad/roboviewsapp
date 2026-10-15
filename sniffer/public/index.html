@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robo Sniffer — Extra-fast detect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+
+  <header class="top">
+    <div class="brand">
+      <div class="mark"></div>
+      <div>
+        <h1>ROBO SNIFFER</h1>
+        <p>24/7 detect · pick a flow per channel</p>
+      </div>
+    </div>
+    <div class="top-right">
+      <a class="ghost" href="http://127.0.0.1:3847" target="_blank" rel="noopener">Drip engine ↗</a>
+      <div class="pill" id="autoPill">AUTO —</div>
+      <div class="pill dim" id="livePill">SSE OFF</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="stat big">
+      <span class="k">LAST CONFIRM</span>
+      <strong id="lastMs">—</strong>
+      <em>ms probe → post</em>
+    </div>
+    <div class="stat">
+      <span class="k">PROBES</span>
+      <strong id="sProbes">0</strong>
+    </div>
+    <div class="stat">
+      <span class="k">HITS</span>
+      <strong id="sHits">0</strong>
+    </div>
+    <div class="stat">
+      <span class="k">FORWARDED</span>
+      <strong id="sFwd">0</strong>
+    </div>
+    <div class="stat">
+      <span class="k">HOT WINDOW</span>
+      <strong id="sHot">—</strong>
+    </div>
+  </section>
+
+  <p class="truth" id="truth">
+    Clock resolution is nanoseconds. Telegram over the internet is still milliseconds. We race sources and burst when you add a channel with AUTO ON.
+  </p>
+
+  <main class="grid">
+    <article class="card add">
+      <h2>Add channel · 24/7</h2>
+      <p class="hint">Watches forever. Mapped: @robogems → Flow 4, @bansyndicate → Flow 4. Other channels use the flow you pick.</p>
+      <form id="addForm">
+        <input id="chInput" name="username" placeholder="@channel or t.me/channel" autocomplete="off" required />
+        <label>
+          Flow to run on every new post
+          <select id="flowSelect" name="flowId">
+            <option value="5">Flow 5 · +36 → 456 / 24h</option>
+            <option value="4">Flow 4 · +56 → 536 / 24h — @bansyndicate + @robogems</option>
+            <option value="3">Flow 3 · +66 → 746 / 24h</option>
+            <option value="1">Flow 1 · +56 → 396 / 24h</option>
+            <option value="2">Flow 2 · +40 → 300 / 24h</option>
+          </select>
+        </label>
+        <label class="chk">
+          <input type="checkbox" id="autoChk" checked />
+          Auto extra-fast detection (24/7)
+        </label>
+        <button type="submit">ARM CHANNEL</button>
+      </form>
+      <p id="formMsg" class="msg" hidden></p>
+      <div class="row-btns">
+        <button type="button" class="sec" id="globalAutoOn">Global AUTO ON</button>
+        <button type="button" class="sec" id="globalAutoOff">Global AUTO OFF</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Watched</h2>
+      <div id="channels" class="channels"></div>
+    </article>
+
+    <article class="card span">
+      <h2>Live hits</h2>
+      <div id="feed" class="feed"></div>
+    </article>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robo View Machine — FOMO · @noormemewebdev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="page-fomo">
+  <div class="bg-grid"></div>
+  <div class="bg-embers" aria-hidden="true"></div>
+  <div class="bg-glow fomo-glow"></div>
+  <div class="fomo-orb fomo-orb-a" aria-hidden="true"></div>
+  <div class="fomo-orb fomo-orb-b" aria-hidden="true"></div>
+  <div class="fomo-orb fomo-orb-c" aria-hidden="true"></div>
+
+  <header class="top fomo-top">
+    <div class="brand">
+      <span class="brand-mark fomo-mark"></span>
+      <div>
+        <h1>FOMO Desk</h1>
+        <p class="tag">Legend lane for <strong>@noormemewebdev</strong></p>
+      </div>
+    </div>
+    <div class="top-meta">
+      <div class="pill" id="modePill">DRY-RUN</div>
+      <div class="pill muted" id="balPill">balance —</div>
+      <div class="pill muted" id="svcPill">Heat</div>
+    </div>
+  </header>
+
+  
+  <nav class="desk-rail" aria-label="Desks">
+    <a href="/" title="Telegram views">Views</a>
+    <a href="/twitter" title="X / Twitter followers">X Followers</a>
+    <a href="/twitter-posts" title="X post likes & comments">X Posts</a>
+    <a href="/twitter-views" title="X post views">X Views</a>
+    <a href="/instagram" title="Instagram followers">IG Followers</a>
+    <a href="/instagram-likes" title="Instagram post likes">IG Likes</a>
+    <a href="/linkedin" title="LinkedIn followers">LinkedIn</a>
+    <a href="/youtube" title="YouTube">YouTube</a>
+    <a href="/fomo" title="FOMO followers" class="is-active">FOMO</a>
+    <a href="/m" title="Phone queue">Phone</a>
+  </nav>
+
+  <main class="fomo-stage">
+    <section class="fomo-hero-stage panel">
+      <div class="fomo-hero-copy">
+        <p class="fomo-eyebrow">fomo.family · locked target</p>
+        <h2 class="fomo-display-name" id="solidDisplayName">Noor Muhammad Dev</h2>
+        <a class="fomo-handle-link" id="solidHandle" href="https://fomo.family/r/noormemewebdev" target="_blank" rel="noopener">@noormemewebdev</a>
+        <div class="fomo-stat-pills">
+          <div class="fomo-stat-pill"><span>Following</span><b id="solidFollowing">35</b></div>
+          <div class="fomo-stat-pill"><span>Desk followers</span><b id="solidFollowers">3</b></div>
+          <div class="fomo-stat-pill fomo-stat-live"><span>Desk status</span><b>Armed</b></div>
+        </div>
+          <p class="fomo-lead" id="catalogHint">
+            First-party house API — Starter, Heat, Legend fill on this desk for
+            <strong>@noormemewebdev</strong>. JAP is not used. Tap a pack and fire.
+          </p>
+        <div class="fomo-cta-row">
+          <button type="button" class="btn primary fomo-go" id="heroFireBtn">Fire Heat +100</button>
+          <a class="btn ghost fomo-go-alt" href="https://fomo.family/r/noormemewebdev" target="_blank" rel="noopener">Open profile</a>
+        </div>
+      </div>
+      <div class="fomo-hero-card" aria-hidden="true">
+        <div class="fomo-avatar-xl">NM</div>
+        <div class="fomo-hero-card-meta">
+          <span class="fomo-solid-badge">Solid account</span>
+          <strong>Heat default</strong>
+          <em id="rateStripValue">$1.50 <small>/ 1k</small></em>
+          <p id="rateStripNote">house rate · local fill</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fomo-desk-grid">
+      <article class="panel fomo-hero-panel">
+        <div class="fomo-hero-top">
+          <span class="fomo-live-dot" aria-hidden="true"></span>
+          <span class="fomo-hero-kicker">Pack desk</span>
+        </div>
+        <h3 class="fomo-hero-title">Tap a pack · see the burn</h3>
+
+        <form id="orderForm" class="stack fomo-order-form">
+          <input type="hidden" name="link" id="profileInput" value="https://fomo.family/r/noormemewebdev" />
+          <input type="hidden" name="serviceId" id="serviceIdHidden" value="900002" />
+
+          <div class="fomo-svc-head">
+            <h3>Service lane</h3>
+            <span class="muted-sm" id="svcRateLabel">$1.50 / 1k</span>
+          </div>
+          <div class="fomo-svc-grid" id="svcGrid" role="listbox" aria-label="FOMO services"></div>
+          <div class="fomo-packs" id="packGrid" role="listbox" aria-label="Follower packs"></div>
+
+          <div class="fomo-selected-bar">
+            <div>
+              <span class="fomo-selected-label">Locked pack</span>
+              <strong id="selectedPackLabel">+100</strong>
+            </div>
+            <div class="fomo-selected-cost">
+              <span class="fomo-selected-label">Quote</span>
+              <strong id="selectedPackCost">$—</strong>
+            </div>
+          </div>
+
+          <div class="fomo-price-board" id="priceBoard" aria-label="Full price list"></div>
+
+          <label class="fomo-custom-qty">
+            Custom quantity
+            <input name="quantity" id="qtyInput" type="number" min="10" step="1" value="100" required />
+          </label>
+
+          <select name="serviceIdSelect" id="serviceSelect" hidden>
+            <option value="900002">Heat</option>
+          </select>
+          <div class="tw-svc-meta" id="svcMeta">—</div>
+
+          <button type="submit" class="btn primary fomo-cta" id="orderBtn">
+            Fire <span id="ctaQty">+100</span> · <span id="ctaCost">$—</span>
+          </button>
+        </form>
+        <p id="formMsg" class="msg">Pick a lane + pack, then fire into @noormemewebdev.</p>
+      </article>
+
+      <div class="fomo-side-stack">
+        <article class="panel fomo-status-panel">
+          <h3>Pipeline</h3>
+          <ul class="fomo-pipeline">
+            <li class="is-done"><span>01</span> Account locked · @noormemewebdev</li>
+            <li class="is-done"><span>02</span> Pack desk + pricing armed</li>
+            <li class="is-done"><span>03</span> House API live · no JAP required</li>
+            <li class="is-wait"><span>04</span> Fire a pack · watch followers climb</li>
+          </ul>
+        </article>
+
+        <article class="panel controls-panel">
+          <div class="row-between">
+            <h2>Controls</h2>
+            <span class="ctrl-mode-badge" id="ctrlModeBadge">DRY-RUN</span>
+          </div>
+          <div class="stack tight">
+            <label class="switch-row">
+              <span>
+                <strong>Live mode</strong>
+                <small>House FOMO fills on our API — no JAP spend. This toggle is for Views / X / IG.</small>
+              </span>
+              <span class="toggle">
+                <input type="checkbox" id="liveToggle" role="switch" aria-label="Live mode" />
+                <span class="toggle-ui" aria-hidden="true"><span class="toggle-knob"></span></span>
+              </span>
+            </label>
+            <div class="ctrl-meta">
+              <div><span>Default svc</span><b id="ctrlDefaultSvc">Heat</b></div>
+              <div><span>Profile</span><b id="ctrlProfile">@noormemewebdev</b></div>
+              <div><span>Quote</span><b id="ctrlCost">—</b></div>
+            </div>
+            <div class="btn-row ctrl-actions">
+              <button type="button" class="btn ghost sm" id="saveProfileBtn">Save lane</button>
+              <button type="button" class="btn ghost sm" id="refreshBtn">Refresh</button>
+            </div>
+            <p id="ctrlMsg" class="msg" hidden></p>
+          </div>
+        </article>
+
+        <article class="panel stats-panel">
+          <h2>Desk totals</h2>
+          <div class="stat-grid">
+            <div class="stat"><span class="n" id="sOrders">0</span><span class="l">orders</span></div>
+            <div class="stat"><span class="n" id="sFollowers">0</span><span class="l">quoted</span></div>
+            <div class="stat"><span class="n" id="sLive">0</span><span class="l">live</span></div>
+            <div class="stat"><span class="n" id="sDry">0</span><span class="l">parked</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel fomo-orders-panel">
+      <div class="row-between">
+        <h2>Order tape · @noormemewebdev</h2>
+        <div class="btn-row">
+          <span class="muted-sm" id="progressSyncLabel" hidden>Auto-sync on</span>
+          <button type="button" class="btn ghost sm" id="ordersRefreshBtn">Sync</button>
+        </div>
+      </div>
+      <div class="order-filters">
+        <select id="orderModeFilter" title="Mode">
+          <option value="">All modes</option>
+          <option value="live">Live</option>
+          <option value="dry-run">Dry-run</option>
+        </select>
+        <select id="orderStatusFilter" title="Status">
+          <option value="">All status</option>
+          <option value="in progress">in progress</option>
+          <option value="submitted">submitted</option>
+          <option value="simulated">simulated</option>
+          <option value="completed">completed</option>
+          <option value="failed">failed</option>
+          <option value="undeliverable">undeliverable</option>
+        </select>
+        <input type="search" id="orderSearch" placeholder="Search link / order id…" />
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Mode</th>
+              <th>Status</th>
+              <th>Progress</th>
+              <th>Qty</th>
+              <th>Service</th>
+              <th>Ref</th>
+              <th>Profile</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </div>
+      <p class="footer-note" id="ordersFooter">No FOMO tape yet</p>
+    </section>
+
+    <!-- kept for JS compatibility -->
+    <div id="cheapDealPanel" hidden>
+      <div id="cheapDealHint"></div>
+      <div id="cheapDealRate"></div>
+      <div id="cheapDealMeta"></div>
+      <div id="cheapDealPrices"></div>
+      <button type="button" id="useCheapBtn"></button>
+    </div>
+  </main>
+
+  <script src="/fomo.js"></script>
+</body>
+</html>

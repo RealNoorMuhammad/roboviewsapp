@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#070305" />
+  <title>Robo View Machine · Phone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="bg"></div>
+  <header>
+    <div class="mark"></div>
+    <div>
+      <h1>Telegram views</h1>
+      <p>Pick a channel · paste a post · desktop drips</p>
+    </div>
+  </header>
+
+  <main>
+    <p id="cfgWarn" class="banner" hidden></p>
+
+    <div class="channel-pick" role="group" aria-label="Channel">
+      <button type="button" class="ch-btn is-on" data-channel="bansyndicate" data-flow="4">
+        <span class="ch-name">Ban’s Syndicate</span>
+        <span class="ch-handle">@bansyndicate · Flow 4</span>
+      </button>
+      <button type="button" class="ch-btn" data-channel="robogems" data-flow="4">
+        <span class="ch-name">Robo Calls</span>
+        <span class="ch-handle">@robogems · Flow 4</span>
+      </button>
+      <button type="button" class="ch-btn" data-channel="other" data-flow="1">
+        <span class="ch-name">Other channel</span>
+        <span class="ch-handle">any t.me post · pick flow</span>
+      </button>
+    </div>
+
+    <form id="queueForm">
+      <label>
+        Post link or #id
+        <textarea name="links" id="linksInput" required rows="3" inputmode="url" autocomplete="off" placeholder="https://t.me/bansyndicate/123&#10;or just 123"></textarea>
+      </label>
+      <label id="flowPickWrap" hidden>
+        Drip flow
+        <select id="flowSelect" name="flowSelect">
+          <option value="1">Flow 1 · +56 → 396</option>
+          <option value="2">Flow 2 · +40 → 300</option>
+          <option value="3">Flow 3 · +66 → 746</option>
+          <option value="4">Flow 4 · +56 → 536</option>
+          <option value="5">Flow 5 · +36 → 456</option>
+        </select>
+      </label>
+      <label>
+        Note <span class="opt">optional</span>
+        <input name="title" type="text" maxlength="120" placeholder="optional label" />
+      </label>
+      <input type="hidden" name="channel" id="channelInput" value="bansyndicate" />
+      <input type="hidden" name="flowId" id="flowInput" value="4" />
+      <button type="submit" class="cta" id="goBtn">Start views</button>
+      <p id="formMsg" class="msg" hidden></p>
+    </form>
+
+    <section class="queue">
+      <div class="q-head">
+        <h2>Live queue</h2>
+        <button type="button" class="ghost" id="refreshBtn">Refresh</button>
+      </div>
+      <p class="q-hint">Sniffer / auto-discover posts show as <strong>AUTO</strong> here too.</p>
+      <div id="queueList" class="q-list">
+        <p class="empty">Nothing yet — paste a t.me post.</p>
+      </div>
+    </section>
+  </main>
+  <script>
+    window.ROBO_MOBILE = {
+      supabaseUrl: "https://hkygnroliyakjzuijhbs.supabase.co",
+      anonKey: "sb_publishable_If40VpG-TcHMII6XBm6oCg_Xp_OzbGy"
+    };
+  </script>
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

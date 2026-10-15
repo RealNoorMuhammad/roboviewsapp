@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robo View Machine — YouTube · @ognoormuhammad8951</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="page-youtube">
+  <div class="bg-grid yt-grid"></div>
+  <div class="bg-embers" aria-hidden="true"></div>
+  <div class="bg-glow yt-glow"></div>
+  <div class="yt-orb yt-orb-a" aria-hidden="true"></div>
+  <div class="yt-orb yt-orb-b" aria-hidden="true"></div>
+  <div class="yt-orb yt-orb-c" aria-hidden="true"></div>
+
+  <header class="top yt-top">
+    <div class="brand">
+      <span class="brand-mark yt-mark"></span>
+      <div>
+        <h1>YouTube Desk</h1>
+        <p class="tag">Solid lane for <strong>@ognoormuhammad8951</strong></p>
+      </div>
+    </div>
+    <div class="top-meta">
+      <div class="pill" id="modePill">DRY-RUN</div>
+      <div class="pill muted" id="balPill">balance —</div>
+      <div class="pill muted" id="svcPill">task —</div>
+    </div>
+  </header>
+
+  
+  <nav class="desk-rail" aria-label="Desks">
+    <a href="/" title="Telegram views">Views</a>
+    <a href="/twitter" title="X / Twitter followers">X Followers</a>
+    <a href="/twitter-posts" title="X post likes & comments">X Posts</a>
+    <a href="/twitter-views" title="X post views">X Views</a>
+    <a href="/instagram" title="Instagram followers">IG Followers</a>
+    <a href="/instagram-likes" title="Instagram post likes">IG Likes</a>
+    <a href="/linkedin" title="LinkedIn followers">LinkedIn</a>
+    <a href="/youtube" title="YouTube" class="is-active">YouTube</a>
+    <a href="/fomo" title="FOMO followers">FOMO</a>
+    <a href="/m" title="Phone queue">Phone</a>
+  </nav>
+
+  <main class="yt-stage">
+    <section class="yt-hero panel yt-hero-solid">
+      <div class="yt-hero-copy">
+        <p class="yt-eyebrow">youtube.com · locked target</p>
+        <h2 class="yt-display" id="solidDisplayName">Og Noor Muhammad</h2>
+        <a
+          class="yt-handle-link"
+          id="solidHandle"
+          href="https://www.youtube.com/@ognoormuhammad8951"
+          target="_blank"
+          rel="noopener"
+        >@ognoormuhammad8951</a>
+        <div class="yt-stat-pills">
+          <div class="yt-stat-pill"><span>Channel</span><b>Solid</b></div>
+          <div class="yt-stat-pill"><span>Default task</span><b>Subs</b></div>
+          <div class="yt-stat-pill yt-stat-live"><span>Desk</span><b>Armed</b></div>
+        </div>
+        <p class="yt-lead">
+          Five lanes with live <strong>$/1k</strong> costs. Subscribers fire straight into this channel.
+          Views / likes / comments / shares take a video from this channel.
+        </p>
+        <div class="yt-cta-row">
+          <button type="button" class="btn primary yt-go" id="armSubsBtn">Arm subscribers</button>
+          <button type="button" class="btn ghost yt-go-alt" id="armViewsBtn">Arm views</button>
+          <a class="btn ghost yt-go-alt" id="openChannelBtn" href="https://www.youtube.com/@ognoormuhammad8951" target="_blank" rel="noopener">Open channel</a>
+        </div>
+      </div>
+      <div class="yt-hero-card">
+        <div class="yt-avatar-xl" id="solidInitials">ON</div>
+        <div class="yt-hero-card-meta">
+          <span class="yt-solid-badge">Solid account</span>
+          <strong id="heroTaskLabel">Subscribers</strong>
+          <em id="heroBurn">$— <small>/ 1k</small></em>
+          <p id="heroBurnSub">tap a lane · see the burn</p>
+        </div>
+        <div class="yt-meter-mini" aria-hidden="true">
+          <span>Est. pack</span>
+          <strong id="heroPackCost">$—</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="yt-task-board">
+      <div class="yt-section-head">
+        <h2>Task lanes · costs for @ognoormuhammad8951</h2>
+        <p class="hint" id="taskBoardHint">Cheapest JAP rate per lane · tap to arm</p>
+      </div>
+      <div class="yt-task-grid" id="taskGrid" role="listbox" aria-label="YouTube tasks"></div>
+    </section>
+
+    <div class="yt-desk-grid">
+      <article class="panel yt-order-panel">
+        <div class="yt-order-top">
+          <span class="yt-live-dot" aria-hidden="true"></span>
+          <span class="yt-order-kicker" id="orderKicker">Armed · Subscribers</span>
+        </div>
+        <h3 class="yt-order-title">Place YouTube order</h3>
+        <p class="hint" id="linkHint">Subscribers lock to the solid channel.</p>
+
+        <form id="orderForm" class="stack">
+          <input type="hidden" name="task" id="taskHidden" value="subscribers" />
+
+          <div class="yt-locked-link" id="lockedLinkBox">
+            <span class="yt-locked-label">Target</span>
+            <strong id="lockedLinkText">@ognoormuhammad8951</strong>
+            <a href="https://www.youtube.com/@ognoormuhammad8951" target="_blank" rel="noopener">open</a>
+          </div>
+
+          <label id="linkFieldWrap">
+            YouTube link
+            <input
+              name="link"
+              id="linkInput"
+              type="text"
+              required
+              spellcheck="false"
+              autocomplete="off"
+              placeholder="https://www.youtube.com/watch?v=… from this channel"
+            />
+          </label>
+
+          <label>
+            Service
+            <select name="serviceId" id="serviceSelect">
+              <option value="">Loading services…</option>
+            </select>
+          </label>
+          <div class="tw-svc-meta" id="svcMeta">—</div>
+
+          <div class="yt-cost-card">
+            <div class="row-between">
+              <h3 class="yt-cost-title">Cost by quantity</h3>
+              <span class="muted-sm" id="costRateLabel">$— / 1k</span>
+            </div>
+            <div class="yt-packs" id="packGrid" role="listbox" aria-label="Quantity packs"></div>
+            <div class="table-wrap compact tw-cost-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Qty</th>
+                    <th>Est. cost</th>
+                  </tr>
+                </thead>
+                <tbody id="costBody">
+                  <tr><td colspan="2" class="muted-sm">Pick a task…</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="footer-note" id="costFooter">Click a pack or row to set quantity</p>
+          </div>
+
+          <div class="yt-selected-bar">
+            <div>
+              <span class="yt-selected-label">Locked</span>
+              <strong id="selectedPackLabel">+—</strong>
+            </div>
+            <div class="yt-selected-cost">
+              <span class="yt-selected-label">Quote</span>
+              <strong id="selectedPackCost">$—</strong>
+            </div>
+          </div>
+
+          <label>
+            Quantity
+            <input name="quantity" id="qtyInput" type="number" min="1" step="1" value="100" required />
+          </label>
+          <label>
+            Note <span class="opt">(optional)</span>
+            <input name="note" type="text" maxlength="120" placeholder="optional label" />
+          </label>
+          <button type="submit" class="btn primary yt-cta" id="orderBtn">Place YouTube order</button>
+        </form>
+        <p id="formMsg" class="msg" hidden></p>
+      </article>
+
+      <div class="yt-side-stack">
+        <article class="panel controls-panel">
+          <div class="row-between">
+            <h2>Controls</h2>
+            <span class="ctrl-mode-badge" id="ctrlModeBadge">DRY-RUN</span>
+          </div>
+          <div class="stack tight">
+            <label class="switch-row">
+              <span>
+                <strong>Live mode</strong>
+                <small>Off = dry-run. On = real JAP spend for YouTube.</small>
+              </span>
+              <span class="toggle">
+                <input type="checkbox" id="liveToggle" role="switch" aria-label="Live mode" />
+                <span class="toggle-ui" aria-hidden="true"><span class="toggle-knob"></span></span>
+              </span>
+            </label>
+            <div class="ctrl-meta">
+              <div><span>Task</span><b id="ctrlTask">subscribers</b></div>
+              <div><span>Default svc</span><b id="ctrlDefaultSvc">—</b></div>
+              <div><span>Channel</span><b id="ctrlLink">@ognoormuhammad8951</b></div>
+              <div><span>Est. cost</span><b id="ctrlCost">—</b></div>
+            </div>
+            <div class="btn-row ctrl-actions">
+              <button type="button" class="btn ghost sm" id="saveLinkBtn">Save link</button>
+              <button type="button" class="btn ghost sm" id="refreshBtn">Refresh</button>
+            </div>
+            <p id="ctrlMsg" class="msg" hidden></p>
+          </div>
+        </article>
+
+        <article class="panel stats-panel">
+          <h2>Totals</h2>
+          <div class="stat-grid yt-stat-grid">
+            <div class="stat"><span class="n" id="sOrders">0</span><span class="l">orders</span></div>
+            <div class="stat"><span class="n" id="sUnits">0</span><span class="l">units</span></div>
+            <div class="stat"><span class="n" id="sSpend">$0</span><span class="l">est. spend</span></div>
+            <div class="stat"><span class="n" id="sLive">0</span><span class="l">live</span></div>
+          </div>
+        </article>
+
+        <article class="panel yt-price-panel">
+          <h2>Full price board</h2>
+          <p class="hint">Cheapest $/1k across every task lane</p>
+          <div class="yt-price-board" id="priceBoard"></div>
+        </article>
+      </div>
+    </div>
+
+    <section class="panel yt-orders-panel grow">
+      <div class="row-between">
+        <h2>YouTube orders · @ognoormuhammad8951</h2>
+        <div class="btn-row">
+          <span class="muted-sm" id="progressSyncLabel" hidden>Auto-sync on</span>
+          <button type="button" class="btn ghost sm" id="ordersRefreshBtn">Sync status</button>
+        </div>
+      </div>
+      <div class="order-filters">
+        <select id="orderTaskFilter" title="Task">
+          <option value="">All tasks</option>
+          <option value="views">views</option>
+          <option value="likes">likes</option>
+          <option value="subscribers">subscribers</option>
+          <option value="comments">comments</option>
+          <option value="shares">shares</option>
+        </select>
+        <select id="orderModeFilter" title="Mode">
+          <option value="">All modes</option>
+          <option value="live">Live</option>
+          <option value="dry-run">Dry-run</option>
+        </select>
+        <select id="orderStatusFilter" title="Status">
+          <option value="">All status</option>
+          <option value="submitted">submitted</option>
+          <option value="simulated">simulated</option>
+          <option value="completed">completed</option>
+          <option value="in progress">in progress</option>
+          <option value="partial">partial</option>
+          <option value="failed">failed</option>
+        </select>
+        <input type="search" id="orderSearch" placeholder="Search link / order id…" />
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Task</th>
+              <th>Mode</th>
+              <th>Status</th>
+              <th>Progress</th>
+              <th>Qty</th>
+              <th>Cost</th>
+              <th>Service</th>
+              <th>JAP</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </div>
+      <p class="footer-note" id="ordersFooter">No YouTube orders yet · solid @ognoormuhammad8951</p>
+    </section>
+  </main>
+
+  <script src="/youtube.js"></script>
+</body>
+</html>

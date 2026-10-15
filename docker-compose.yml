@@ -1,0 +1,16 @@
+services:
+  robo-views:
+    build: .
+    ports:
+      - "3847:3847"
+    env_file:
+      - .env
+    environment:
+      - DATA_DIR=/app/data
+      - PORT=3847
+    volumes:
+      - robo-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  robo-data:

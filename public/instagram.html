@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robo View Machine — Instagram Followers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="page-instagram">
+  <div class="bg-grid"></div>
+  <div class="bg-embers" aria-hidden="true"></div>
+  <div class="bg-glow ig-glow"></div>
+
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark ig-mark"></span>
+      <div>
+        <h1>Instagram Followers</h1>
+        <p class="tag">Slow organic drip — safer than dumping all at once</p>
+      </div>
+    </div>
+    <div class="top-meta">
+      <div class="pill" id="modePill">DRY-RUN</div>
+      <div class="pill muted" id="balPill">balance —</div>
+      <div class="pill muted" id="svcPill">svc —</div>
+    </div>
+  </header>
+
+  
+  <nav class="desk-rail" aria-label="Desks">
+    <a href="/" title="Telegram views">Views</a>
+    <a href="/twitter" title="X / Twitter followers">X Followers</a>
+    <a href="/twitter-posts" title="X post likes & comments">X Posts</a>
+    <a href="/twitter-views" title="X post views">X Views</a>
+    <a href="/instagram" title="Instagram followers" class="is-active">IG Followers</a>
+    <a href="/instagram-likes" title="Instagram post likes">IG Likes</a>
+    <a href="/linkedin" title="LinkedIn followers">LinkedIn</a>
+    <a href="/youtube" title="YouTube">YouTube</a>
+    <a href="/fomo" title="FOMO followers">FOMO</a>
+    <a href="/m" title="Phone queue">Phone</a>
+  </nav>
+
+  <main class="layout tw-layout desk-immersive">
+    <section class="col">
+      <article class="panel">
+        <h2>Start organic drip</h2>
+        <p class="hint">Followers arrive in small batches over ~6 hours (e.g. +5 in 10 min, then +20, then more) until the total is complete — looks more natural.</p>
+        <form id="orderForm" class="stack">
+          <label>
+            Instagram profile
+            <input
+              name="link"
+              id="profileInput"
+              type="text"
+              required
+              spellcheck="false"
+              autocomplete="off"
+              placeholder="@Bancrypto__ or https://www.instagram.com/Bancrypto__/"
+            />
+          </label>
+          <label>
+            Service <span class="opt">(needs min ≤ 5 for +5 batches)</span>
+            <select name="serviceId" id="serviceSelect">
+              <option value="">Loading services…</option>
+            </select>
+          </label>
+          <div class="tw-svc-meta" id="svcMeta">—</div>
+
+          <div class="tw-cost-card ig-cost-card">
+            <div class="row-between">
+              <h3 class="tw-cost-title">Organic schedule</h3>
+              <span class="muted-sm" id="planTotalLabel">→ 100</span>
+            </div>
+            <div class="table-wrap compact tw-cost-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>When</th>
+                    <th>Batch</th>
+                    <th>Est. cost</th>
+                  </tr>
+                </thead>
+                <tbody id="planBody">
+                  <tr><td colspan="3" class="muted-sm">Loading plan…</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="footer-note" id="planFooter">Total ~$— over ~6h</p>
+          </div>
+
+          <label>
+            Total followers
+            <input name="quantity" id="qtyInput" type="number" min="5" step="1" value="100" required />
+          </label>
+          <label>
+            Note <span class="opt">(optional)</span>
+            <input name="note" type="text" maxlength="120" placeholder="optional label" />
+          </label>
+          <button type="submit" class="btn primary" id="orderBtn">Start organic drip</button>
+        </form>
+        <p id="formMsg" class="msg" hidden></p>
+      </article>
+
+      <article class="panel controls-panel">
+        <div class="row-between">
+          <h2>Controls</h2>
+          <span class="ctrl-mode-badge" id="ctrlModeBadge">DRY-RUN</span>
+        </div>
+        <div class="stack tight">
+          <label class="switch-row">
+            <span>
+              <strong>Live mode</strong>
+              <small>Off = dry-run (safe). On = real JAP spend for drip batches.</small>
+            </span>
+            <span class="toggle">
+              <input type="checkbox" id="liveToggle" role="switch" aria-label="Live mode" />
+              <span class="toggle-ui" aria-hidden="true"><span class="toggle-knob"></span></span>
+            </span>
+          </label>
+          <div class="ctrl-meta">
+            <div><span>Default svc</span><b id="ctrlDefaultSvc">—</b></div>
+            <div><span>Profile</span><b id="ctrlProfile">—</b></div>
+            <div><span>Est. total</span><b id="ctrlCost">—</b></div>
+          </div>
+          <div class="btn-row ctrl-actions">
+            <button type="button" class="btn ghost sm" id="saveProfileBtn">Save profile</button>
+            <button type="button" class="btn ghost sm" id="refreshBtn">Refresh</button>
+          </div>
+          <p id="ctrlMsg" class="msg" hidden></p>
+        </div>
+      </article>
+
+      <article class="panel stats-panel">
+        <h2>Totals</h2>
+        <div class="stat-grid">
+          <div class="stat"><span class="n" id="sCampaigns">0</span><span class="l">drips</span></div>
+          <div class="stat"><span class="n" id="sOrdered">0</span><span class="l">sent</span></div>
+          <div class="stat"><span class="n" id="sPending">0</span><span class="l">pending</span></div>
+          <div class="stat"><span class="n" id="sActive">0</span><span class="l">active</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="col wide">
+      <article class="panel grow">
+        <div class="row-between">
+          <h2>Active drips</h2>
+          <div class="btn-row">
+            <button type="button" class="btn ghost sm" id="dripsRefreshBtn">Refresh</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Started</th>
+                <th>Status</th>
+                <th>Progress</th>
+                <th>Profile</th>
+                <th>Next / actions</th>
+              </tr>
+            </thead>
+            <tbody id="dripsBody"></tbody>
+          </table>
+        </div>
+        <p class="footer-note" id="dripsFooter">No organic drips yet</p>
+      </article>
+
+      <article class="panel grow">
+        <div class="row-between">
+          <h2>Batch orders</h2>
+          <div class="btn-row">
+            <button type="button" class="btn ghost sm" id="ordersRefreshBtn">Sync status</button>
+          </div>
+        </div>
+        <div class="order-filters">
+          <select id="orderModeFilter" title="Mode">
+            <option value="">All modes</option>
+            <option value="live">Live</option>
+            <option value="dry-run">Dry-run</option>
+          </select>
+          <select id="orderStatusFilter" title="Status">
+            <option value="">All status</option>
+            <option value="submitted">submitted</option>
+            <option value="simulated">simulated</option>
+            <option value="completed">completed</option>
+            <option value="in progress">in progress</option>
+            <option value="partial">partial</option>
+            <option value="failed">failed</option>
+          </select>
+          <input type="search" id="orderSearch" placeholder="Search link / order id…" />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Mode</th>
+                <th>Status</th>
+                <th>Qty</th>
+                <th>Batch</th>
+                <th>JAP</th>
+                <th>Profile</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+        <p class="footer-note" id="ordersFooter">No Instagram batch orders yet</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="/instagram.js"></script>
+</body>
+</html>

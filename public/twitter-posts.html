@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robo View Machine — X Post Likes &amp; Comments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="page-twitter page-twitter-posts">
+  <div class="bg-grid"></div>
+  <div class="bg-embers" aria-hidden="true"></div>
+  <div class="bg-glow tw-glow"></div>
+
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark tw-mark"></span>
+      <div>
+        <h1>X Post Engagement</h1>
+        <p class="tag">Separate lanes for likes and comments on tweet URLs</p>
+      </div>
+    </div>
+    <div class="top-meta">
+      <div class="pill" id="modePill">DRY-RUN</div>
+      <div class="pill muted" id="balPill">balance —</div>
+      <div class="pill muted" id="svcPill">task —</div>
+    </div>
+  </header>
+
+  
+  <nav class="desk-rail" aria-label="Desks">
+    <a href="/" title="Telegram views">Views</a>
+    <a href="/twitter" title="X / Twitter followers">X Followers</a>
+    <a href="/twitter-posts" title="X post likes & comments" class="is-active">X Posts</a>
+    <a href="/twitter-views" title="X post views">X Views</a>
+    <a href="/instagram" title="Instagram followers">IG Followers</a>
+    <a href="/instagram-likes" title="Instagram post likes">IG Likes</a>
+    <a href="/linkedin" title="LinkedIn followers">LinkedIn</a>
+    <a href="/youtube" title="YouTube">YouTube</a>
+    <a href="/fomo" title="FOMO followers">FOMO</a>
+    <a href="/m" title="Phone queue">Phone</a>
+  </nav>
+
+  <main class="layout tw-layout desk-immersive">
+    <section class="col">
+      <article class="panel twp-task-panel">
+        <h2>Task lane</h2>
+        <p class="hint">Pick likes or comments. Comments can be <strong>your own lines</strong> (crypto custom) or random. Views live on <a href="/twitter-views">X Views</a>.</p>
+        <div class="twp-task-tabs" id="taskTabs" role="tablist"></div>
+      </article>
+
+      <article class="panel tw-deal-panel" id="cheapDealPanel">
+        <div class="tw-deal-head">
+          <span class="tw-deal-badge" id="cheapDealBadge">Cheapest</span>
+          <h2 id="cheapDealTitle">Best price likes</h2>
+        </div>
+        <p class="hint" id="cheapDealHint">Lowest $/1k service for this lane</p>
+        <div class="tw-deal-rate" id="cheapDealRate">$— <span>/ 1k</span></div>
+        <div class="tw-deal-meta" id="cheapDealMeta">Loading…</div>
+        <div class="tw-deal-prices" id="cheapDealPrices"></div>
+        <button type="button" class="btn primary" id="useCheapBtn">Use cheapest service</button>
+      </article>
+
+      <article class="panel tw-instant-hero" id="instantDealPanel">
+        <div class="tw-instant-orb" aria-hidden="true"></div>
+        <div class="tw-instant-top">
+          <span class="tw-instant-live"><i></i> Fast lane</span>
+          <span class="tw-instant-svc" id="instantSvcTag">svc —</span>
+        </div>
+        <h2 class="tw-instant-title" id="instantDealTitle">Instant Likes</h2>
+        <p class="tw-instant-sub" id="instantDealHint">
+          Starts within ~1 hour — cheapest among fast-start services.
+        </p>
+        <div class="tw-instant-rate-row">
+          <div class="tw-deal-rate" id="instantDealRate">$— <span>/ 1k</span></div>
+          <div class="tw-instant-stats" id="instantStats">
+            <span>⏱ 0–1h start</span>
+            <span>⚡ fast fill</span>
+          </div>
+        </div>
+        <div class="tw-deal-meta" id="instantDealMeta">Loading…</div>
+        <div class="tw-instant-packs" id="instantDealPrices"></div>
+        <div class="tw-instant-actions">
+          <button type="button" class="btn primary tw-instant-cta" id="useInstantBtn">
+            Use fast lane
+          </button>
+          <button type="button" class="btn ghost tw-instant-order" id="orderInstantBtn">
+            Select &amp; scroll to order
+          </button>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2 id="orderPanelTitle">Order likes</h2>
+        <p class="hint">Paste an X post URL (<code>/status/</code> link). Not a profile link.</p>
+        <form id="orderForm" class="stack">
+          <label>
+            X post URL
+            <input
+              name="link"
+              id="postInput"
+              type="url"
+              required
+              spellcheck="false"
+              autocomplete="off"
+              placeholder="https://x.com/Bancrypto__/status/1234567890"
+            />
+          </label>
+          <label>
+            Service
+            <select name="serviceId" id="serviceSelect">
+              <option value="">Loading services…</option>
+            </select>
+          </label>
+          <div class="tw-svc-meta" id="svcMeta">—</div>
+          <div id="commentStyleWrap" class="twp-style-wrap" hidden>
+            <span class="twp-style-label">Comment type</span>
+            <div class="twp-style-tabs" role="tablist">
+              <button type="button" class="twp-style-tab is-active" data-style="custom" id="styleCustomBtn">
+                Custom · our text
+              </button>
+              <button type="button" class="twp-style-tab" data-style="random" id="styleRandomBtn">
+                Random
+              </button>
+            </div>
+          </div>
+          <label id="customCommentsWrap" hidden>
+            Your comments <span class="opt">(one per line — qty is whatever this service allows)</span>
+            <textarea
+              id="commentsInput"
+              name="comments"
+              rows="6"
+              spellcheck="true"
+              placeholder="wangchai cooked&#10;this is the one&#10;bad dog energy"
+            ></textarea>
+            <span class="muted-sm" id="commentsCount">Set qty to this service’s min–max</span>
+          </label>
+          <div class="tw-cost-card">
+            <div class="row-between">
+              <h3 class="tw-cost-title">Cost by quantity</h3>
+              <span class="muted-sm" id="costRateLabel">$— / 1k</span>
+            </div>
+            <div class="table-wrap compact tw-cost-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th id="costQtyHeader">Qty</th>
+                    <th>Est. cost</th>
+                  </tr>
+                </thead>
+                <tbody id="costBody">
+                  <tr><td colspan="2" class="muted-sm">Pick a service…</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="footer-note" id="costFooter">Click a row to set quantity</p>
+          </div>
+          <label>
+            Quantity
+            <input name="quantity" id="qtyInput" type="number" min="5" step="1" value="100" required />
+          </label>
+          <label>
+            Note <span class="opt">(optional)</span>
+            <input name="note" type="text" maxlength="120" placeholder="campaign label…" />
+          </label>
+          <button type="submit" class="btn primary" id="orderBtn">Place order</button>
+        </form>
+        <p id="formMsg" class="msg" hidden></p>
+      </article>
+
+      <article class="panel controls-panel">
+        <div class="row-between">
+          <h2>Controls</h2>
+          <span class="ctrl-mode-badge" id="ctrlModeBadge">DRY-RUN</span>
+        </div>
+        <div class="stack tight">
+          <label class="switch-row">
+            <span>
+              <strong>Live mode</strong>
+              <small>Off = dry-run (safe). On = real JAP spend.</small>
+            </span>
+            <span class="toggle">
+              <input type="checkbox" id="liveToggle" role="switch" aria-label="Live mode" />
+              <span class="toggle-ui" aria-hidden="true"><span class="toggle-knob"></span></span>
+            </span>
+          </label>
+          <div class="ctrl-meta">
+            <div><span>Task</span><b id="ctrlTask">—</b></div>
+            <div><span>Default svc</span><b id="ctrlDefaultSvc">—</b></div>
+            <div><span>Last post</span><b id="ctrlPost">—</b></div>
+            <div><span>Est. cost</span><b id="ctrlCost">—</b></div>
+          </div>
+          <div class="btn-row ctrl-actions">
+            <button type="button" class="btn ghost sm" id="savePostBtn">Save post URL</button>
+            <button type="button" class="btn ghost sm" id="refreshBtn">Refresh</button>
+          </div>
+          <p id="ctrlMsg" class="msg" hidden></p>
+        </div>
+      </article>
+
+      <article class="panel stats-panel">
+        <h2>Totals</h2>
+        <div class="stat-grid">
+          <div class="stat"><span class="n" id="sOrders">0</span><span class="l">orders</span></div>
+          <div class="stat"><span class="n" id="sUnits">0</span><span class="l" id="sUnitsLabel">units</span></div>
+          <div class="stat"><span class="n" id="sLive">0</span><span class="l">live</span></div>
+          <div class="stat"><span class="n" id="sDry">0</span><span class="l">dry</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="col wide">
+      <article class="panel grow">
+        <div class="row-between">
+          <h2>Post orders</h2>
+          <div class="btn-row">
+            <span class="muted-sm" id="progressSyncLabel" hidden>Auto-sync on</span>
+            <button type="button" class="btn ghost sm" id="ordersRefreshBtn">Sync status</button>
+          </div>
+        </div>
+        <div class="order-filters">
+          <select id="orderTaskFilter" title="Task">
+            <option value="">All tasks</option>
+            <option value="likes">Likes</option>
+            <option value="comments">Comments</option>
+          </select>
+          <select id="orderModeFilter" title="Mode">
+            <option value="">All modes</option>
+            <option value="live">Live</option>
+            <option value="dry-run">Dry-run</option>
+          </select>
+          <select id="orderStatusFilter" title="Status">
+            <option value="">All status</option>
+            <option value="submitted">submitted</option>
+            <option value="simulated">simulated</option>
+            <option value="completed">completed</option>
+            <option value="in progress">in progress</option>
+            <option value="partial">partial</option>
+            <option value="failed">failed</option>
+          </select>
+          <input type="search" id="orderSearch" placeholder="Search post / order id…" />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Task</th>
+                <th>Mode</th>
+                <th>Status</th>
+                <th>Progress</th>
+                <th>Qty</th>
+                <th>Service</th>
+                <th>JAP</th>
+                <th>Post</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+        <p class="footer-note" id="ordersFooter">No X post orders yet</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="/twitter-posts.js"></script>
+</body>
+</html>

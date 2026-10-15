@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "buildCommand": null,
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/m", "destination": "/m/index.html" },
+    { "source": "/m/", "destination": "/m/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/m/config.js",
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+    }
+  ]
+}

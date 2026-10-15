@@ -1,0 +1,15 @@
+# Railway: one always-on Node process (worker + dashboard).
+# Do not scale replicas above 1 — two instances would double-fire JAP orders.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "node server/index.js"
+healthcheckPath = "/api/health"
+healthcheckTimeout = 30
+restartPolicyType = "ALWAYS"
+restartPolicyMaxRetries = 10
+# No overlap: old + new workers must not run at the same time (live spend).
+overlapSeconds = "0"
