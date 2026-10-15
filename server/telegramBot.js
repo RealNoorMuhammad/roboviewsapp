@@ -5,7 +5,7 @@
  *
  * Env: TELEGRAM_BOT_TOKEN
  * Watches settings.channelUsernames (default: bansyndicate + robogems).
- * Channel map: bansyndicate→Flow 4, robogems→Flow 4; others→Flow 1.
+ * Channel map: bansyndicate→Flow 4, robogems→Flow Robo; others→Flow 1.
  */
 
 const db = require("./db");
@@ -136,7 +136,7 @@ async function pollOnce(offset) {
 
 /**
  * Ingest one discovered bot post into the drip engine.
- * Channel map: @robogems → Flow 4, @bansyndicate → Flow 4; others → Flow 1.
+ * Channel map: @robogems → Flow Robo, @bansyndicate → Flow 4; others → Flow 1.
  */
 function ingestDiscovered(post, source = "bot") {
   const afterId = afterMessageId(post.username);

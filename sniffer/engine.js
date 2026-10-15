@@ -141,7 +141,7 @@ function defaultFlowFor(username) {
 
 function ensureFlow(ch) {
   if (!ch) return;
-  // Mapped channels (robogems→F4, bansyndicate→F4) always win
+  // Mapped channels (robogems→Flow Robo, bansyndicate→F4) always win
   ch.flowId = flowIdForChannel(ch.username, ch.flowId || "1");
   ch.alwaysOn = ch.alwaysOn !== false;
 }
@@ -656,7 +656,7 @@ function addChannel(raw, { auto = true, flowId } = {}) {
 function setChannelFlow(raw, flowId) {
   const ch = channelRecord(raw);
   if (!ch) throw new Error("Unknown channel");
-  // Mapped channels stay forced (robogems→4, bansyndicate→4)
+  // Mapped channels stay forced (robogems→Flow Robo, bansyndicate→4)
   ch.flowId = flowIdForChannel(ch.username, flowId);
   ch.alwaysOn = true;
   saveState();

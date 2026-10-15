@@ -3735,7 +3735,7 @@ app.listen(PORT, "0.0.0.0", () => {
   console.log(`\n  Robo View Machine → http://0.0.0.0:${PORT}`);
   console.log(`  Mode: ${worker.isLive() ? "LIVE ⚠️" : "DRY-RUN (safe)"}`);
   console.log(
-    `  Watching: ${channels.map((c) => "@" + c).join(" + ")} · @bansyndicate→F4 · @robogems→F4 · others→F1`
+    `  Watching: ${channels.map((c) => "@" + c).join(" + ")} · @bansyndicate→F4 · @robogems→Flow Robo · others→F1`
   );
   console.log(`  Auto-discover scrape: every ${AUTO_DISCOVER_MS}ms · max age ${AUTO_DISCOVER_MAX_AGE_MS / 60000}m`);
   console.log(

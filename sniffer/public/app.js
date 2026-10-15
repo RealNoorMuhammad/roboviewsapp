@@ -8,10 +8,12 @@ const FLOW_LABELS = {
   3: "Flow 3 · 746",
   4: "Flow 4 · 536",
   5: "Flow 5 · 456",
+  6: "Flow Robo · 420",
 };
 
 let lastFlows = [
   { id: "5", name: FLOW_LABELS[5], totalViews: 456 },
+  { id: "6", name: FLOW_LABELS[6], totalViews: 420 },
   { id: "4", name: FLOW_LABELS[4], totalViews: 536 },
   { id: "3", name: FLOW_LABELS[3], totalViews: 746 },
   { id: "1", name: FLOW_LABELS[1], totalViews: 396 },

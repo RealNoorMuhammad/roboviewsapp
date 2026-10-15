@@ -127,7 +127,7 @@ async function loadSettings() {
   if (adHint) {
     const hours = s.autoDiscoverMaxAgeHours != null ? s.autoDiscoverMaxAgeHours : 1;
     const windowLabel = hours === 1 ? "last 1h" : `last ${hours}h`;
-    adHint.textContent = `Watch ${chLabel} — @bansyndicate→F4, @robogems→F4 (${windowLabel}) · auto + manual.`;
+    adHint.textContent = `Watch ${chLabel} — @bansyndicate→F4, @robogems→Flow Robo (${windowLabel}) · auto + manual.`;
   }
   const svc = $("#ctrlService");
   if (svc) svc.textContent = String(s.serviceId || "—");
@@ -221,7 +221,7 @@ async function loadPosts() {
       <div>
         <span class="badge ${p.status}">${p.status}</span>
         <span class="badge">${p.source || "manual"}</span>
-        <span class="badge">${p.flowName || (p.flowId === "5" ? "Flow 5 · 456" : p.flowId === "4" ? "Flow 4 · 536" : p.flowId === "3" ? "Flow 3 · 746" : p.flowId === "2" ? "Flow 2 · 300" : "Flow 1 · 396")}</span>
+        <span class="badge">${p.flowName || (p.flowId === "6" ? "Flow Robo · 420" : p.flowId === "5" ? "Flow 5 · 456" : p.flowId === "4" ? "Flow 4 · 536" : p.flowId === "3" ? "Flow 3 · 746" : p.flowId === "2" ? "Flow 2 · 300" : "Flow 1 · 396")}</span>
         <span class="badge">${p.progress || 0}%</span>
       </div>
       <a class="link" href="${p.link}" target="_blank" rel="noopener">${shortLink(p.link)}</a>
@@ -401,6 +401,7 @@ function escapeHtml(s) {
 
 function flowLabelForId(flowId) {
   const id = String(flowId || "");
+  if (id === "6") return "Flow Robo (+20 → 420)";
   if (id === "5") return "Flow 5 (+36 → 456)";
   if (id === "4") return "Flow 4 (+56 → 536)";
   if (id === "3") return "Flow 3 (+66 → 746)";
@@ -420,7 +421,7 @@ function detectPreferredFlowFromLinks(text) {
   });
   const allRobo = channels.every((c) => c === "robogems");
   const allBan = channels.every((c) => c === "bansyndicate");
-  if (allRobo) return "4";
+  if (allRobo) return "6";
   if (allBan) return "4";
   return null;
 }
@@ -545,7 +546,7 @@ $("#addForm").addEventListener("submit", async (e) => {
         (unique.length ? ` — ${unique.join(" · ")}` : "");
     } else {
       const applied = res.flowName || flowLabelForId(res.flowId || flowId);
-      msg.textContent = `${applied} started — instant pack fires now (if Live ON). @robogems always uses Flow 4.`;
+      msg.textContent = `${applied} started — instant pack fires now (if Live ON). @robogems always uses Flow Robo.`;
     }
     const keepFlow = flowId;
     e.target.reset();
@@ -563,7 +564,7 @@ $("#liveToggle").addEventListener("change", async (e) => {
   const on = e.target.checked;
   if (on) {
     const ok = confirm(
-      "LIVE MODE will spend real JAP balance and place real orders.\n\n@robogems → Flow 4 (+56→536) · @bansyndicate → Flow 4 (+56→536).\n\nAlso requires LIVE_MODE=true in .env.\n\nContinue?"
+      "LIVE MODE will spend real JAP balance and place real orders.\n\n@robogems → Flow Robo (+20→420) · @bansyndicate → Flow 4 (+56→536).\n\nAlso requires LIVE_MODE=true in .env.\n\nContinue?"
     );
     if (!ok) {
       e.target.checked = false;
@@ -593,7 +594,7 @@ $("#autoToggle").addEventListener("change", async (e) => {
     });
     setCtrlMsg(
       e.target.checked
-        ? "Auto-discover ON — @bansyndicate→F4 · @robogems→F4"
+        ? "Auto-discover ON — @bansyndicate→F4 · @robogems→Flow Robo"
         : "Auto-discover OFF — paste links manually"
     );
     await loadSettings();

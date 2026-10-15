@@ -10,7 +10,7 @@ const CHANNELS = {
   },
   robogems: {
     handle: "robogems",
-    flowId: "4",
+    flowId: "6",
     label: "Robo Calls",
     url: "https://t.me/robogems",
     locked: true,

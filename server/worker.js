@@ -98,7 +98,7 @@ function findExistingPost(posts, { normalized, channel, messageId }) {
  * Instant pack is forced to "due now" and fired on the next microtask — zero tick wait.
  *
  * Options:
- *  - flowId: "1" | "2" | "3" | "4" | "5"
+ *  - flowId: "1" | "2" | "3" | "4" | "5" | "6" (6 = Flow Robo)
  *  - forceFlow: true → use flowId even for mapped channels (@robogems/@bansyndicate)
  *  - skipOrders: true → record link only (no drip). Used to skip already-posted messages.
  */

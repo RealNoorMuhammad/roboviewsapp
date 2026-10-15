@@ -4,8 +4,9 @@
  * Flow 1: +56 instant → 17×+20 → 396 over 24h (18 orders)
  * Flow 2: +40 instant → 13×+20 → 300 over 24h (14 orders)
  * Flow 3: +66 instant → 34×+20 → 746 over 24h (35 orders)
- * Flow 4: +56 instant → 24×+20 → 536 over 24h — @bansyndicate + @robogems
+ * Flow 4: +56 instant → 24×+20 → 536 over 24h — @bansyndicate
  * Flow 5: +36 instant → 21×+20 → 456 — manual / other channels
+ * Flow Robo: +20 instant → 20×+20 → 420 over 24h — @robogems
  */
 
 const ORDER_QTY = 20;
@@ -112,7 +113,7 @@ const FLOW3_MARKS = [
 ];
 
 /**
- * Flow 4 — @bansyndicate + @robogems.
+ * Flow 4 — @bansyndicate.
  * +56 instant → 24× +20 through 24h → 536 total (25 orders).
  */
 const FLOW4_STEPS = [
@@ -175,6 +176,36 @@ const FLOW5_STEPS = [
 ];
 
 const FLOW5_MARKS = FLOW5_STEPS.map((s) => s.mark);
+
+/**
+ * Flow Robo — @robogems.
+ * +20 instant → 20× +20 through 24h → 420 total (21 orders).
+ */
+const FLOW_ROBO_STEPS = [
+  { mark: "0h 00m", qty: 20 },
+  { mark: "0h 03m", qty: 20 },
+  { mark: "0h 07m", qty: 20 },
+  { mark: "0h 15m", qty: 20 },
+  { mark: "0h 35m", qty: 20 },
+  { mark: "1h 15m", qty: 20 },
+  { mark: "1h 50m", qty: 20 },
+  { mark: "2h 30m", qty: 20 },
+  { mark: "3h 15m", qty: 20 },
+  { mark: "4h 30m", qty: 20 },
+  { mark: "5h 50m", qty: 20 },
+  { mark: "7h 20m", qty: 20 },
+  { mark: "9h 00m", qty: 20 },
+  { mark: "10h 50m", qty: 20 },
+  { mark: "12h 45m", qty: 20 },
+  { mark: "14h 45m", qty: 20 },
+  { mark: "16h 45m", qty: 20 },
+  { mark: "18h 40m", qty: 20 },
+  { mark: "20h 30m", qty: 20 },
+  { mark: "22h 15m", qty: 20 },
+  { mark: "24h 00m", qty: 20 },
+];
+
+const FLOW_ROBO_MARKS = FLOW_ROBO_STEPS.map((s) => s.mark);
 
 function normalizeSteps({ marks, steps, instantViews, dripViews = DRIP_VIEWS }) {
   if (Array.isArray(steps) && steps.length) {
@@ -307,13 +338,20 @@ const FLOW_DEFS = {
     instantViews: 36,
     formula: "+36 instant → 21× +20 through 24h → 456 total",
   }),
+  "6": makeFlowDef({
+    id: "6",
+    name: "Flow Robo · 420",
+    steps: FLOW_ROBO_STEPS,
+    instantViews: 20,
+    formula: "+20 instant → 20× +20 through 24h → 420 total",
+  }),
 };
 
 const DEFAULT_FLOW_ID = "1";
 
 /** Channel → forced flow (auto + manual + sniffer). */
 const CHANNEL_FLOW_MAP = {
-  robogems: "4",
+  robogems: "6",
   bansyndicate: "4",
 };
 
@@ -338,7 +376,7 @@ function normalizeFlowId(raw) {
 
 /**
  * Resolve flow for a channel. Mapped channels always win
- * (robogems→4, bansyndicate→4). Others fall back to provided flow / default.
+ * (robogems→Flow Robo, bansyndicate→4). Others fall back to provided flow / default.
  */
 function flowIdForChannel(username, fallback = DEFAULT_FLOW_ID) {
   const key = normalizeChannelKey(username);
@@ -594,6 +632,8 @@ module.exports = {
   FLOW4_STEPS,
   FLOW5_MARKS,
   FLOW5_STEPS,
+  FLOW_ROBO_MARKS,
+  FLOW_ROBO_STEPS,
   FLOW,
   FLOW_DEFS,
   CHANNEL_FLOW_MAP,
