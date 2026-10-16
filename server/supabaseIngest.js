@@ -18,6 +18,7 @@ const state = {
   lastStatus: null,
   importedCount: 0,
   missingTableUntil: 0,
+  recent: [],
 };
 
 let running = false;
@@ -76,9 +77,42 @@ async function rest(path, opts = {}) {
 
 async function fetchPending() {
   const q =
-    "telegram_posts?status=eq.pending&order=created_at.asc&select=id,link,title,flow_id,created_at";
+    "telegram_posts?status=eq.pending&order=created_at.asc&select=id,link,title,flow_id,source,created_at";
   const rows = await rest(q, { method: "GET" });
   return Array.isArray(rows) ? rows : [];
+}
+
+/** Phone rows from the last day, so the desk can show them and catch ones it missed. */
+async function fetchRecentMobile() {
+  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const q =
+    "telegram_posts?source=eq.mobile&created_at=gte." +
+    encodeURIComponent(since) +
+    "&order=created_at.desc&select=id,link,title,flow_id,source,status,created_at,imported_at&limit=20";
+  const rows = await rest(q, { method: "GET" });
+  return Array.isArray(rows) ? rows : [];
+}
+
+function alreadyTracked(link) {
+  let normalized;
+  try {
+    normalized = worker.normalizeLink(link);
+  } catch {
+    return true;
+  }
+  const data = db.read();
+  if ((data.phoneDismissed || []).includes(normalized)) return true;
+  const m = normalized.match(/t\.me\/([^/]+)\/(\d+)/i);
+  return (data.posts || []).some((p) => {
+    if (p.link === normalized) return true;
+    if (!m) return false;
+    const pm = String(p.link || "").match(/t\.me\/([^/]+)\/(\d+)/i);
+    return (
+      pm &&
+      pm[1].toLowerCase() === m[1].toLowerCase() &&
+      Number(pm[2]) === Number(m[2])
+    );
+  });
 }
 
 async function patchRow(id, patch) {
@@ -117,10 +151,11 @@ async function reportDesktopHit({
     imported_at: new Date().toISOString(),
   };
   try {
+    // Do not overwrite a row the phone already queued — that was hiding "mobile".
     await rest("telegram_posts?on_conflict=link", {
       method: "POST",
       headers: {
-        Prefer: "resolution=merge-duplicates,return=minimal",
+        Prefer: "resolution=ignore-duplicates,return=minimal",
       },
       body: JSON.stringify(body),
     });
@@ -202,8 +237,27 @@ async function tick() {
     state.lastOkAt = new Date().toISOString();
     state.lastError = null;
     state.missingTableUntil = 0;
-    for (const row of rows) {
+    let recent = [];
+    try {
+      recent = await fetchRecentMobile();
+      state.recent = recent.map((r) => ({
+        link: r.link,
+        status: r.status || "pending",
+        source: r.source || "mobile",
+        createdAt: r.created_at || null,
+      }));
+    } catch (e) {
+      state.lastError = e.message || "phone list failed";
+    }
+    const pendingIds = new Set(rows.map((r) => r.id));
+    const missed = recent.filter(
+      (r) => r && r.id && !pendingIds.has(r.id) && !alreadyTracked(r.link)
+    );
+    for (const row of rows.concat(missed)) {
       try {
+        if (missed.includes(row)) {
+          console.log("[phone-ingest] desktop missed phone post, adding", row.link);
+        }
         await ingestRow(row);
       } catch (e) {
         const msg = e.message || "ingest failed";
@@ -278,6 +332,7 @@ function getStatus() {
     lastStatus: state.lastStatus,
     importedCount: state.importedCount,
     mobilePath: "/m",
+    recent: state.recent || [],
   };
 }
 

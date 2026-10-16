@@ -369,11 +369,19 @@ function setPostStatus(postId, status) {
 }
 
 function removePost(postId) {
+  let link = null;
   db.update((dbx) => {
+    const found = dbx.posts.find((p) => p.id === postId);
+    link = found ? found.link : null;
     dbx.posts = dbx.posts.filter((p) => p.id !== postId);
     dbx.orders = dbx.orders.filter((o) => o.postId !== postId);
+    if (link) {
+      dbx.phoneDismissed = dbx.phoneDismissed || [];
+      if (!dbx.phoneDismissed.includes(link)) dbx.phoneDismissed.unshift(link);
+      dbx.phoneDismissed = dbx.phoneDismissed.slice(0, 200);
+    }
   });
-  db.logEvent("post_removed", `Removed post ${postId}`, { postId });
+  db.logEvent("post_removed", `Removed post ${postId}`, { postId, link });
 }
 
 /**

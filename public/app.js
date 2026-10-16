@@ -220,7 +220,7 @@ async function loadPosts() {
     <div class="post-card" data-id="${p.id}">
       <div>
         <span class="badge ${p.status}">${p.status}</span>
-        <span class="badge">${p.source || "manual"}</span>
+        <span class="badge">${p.source === "mobile" ? "phone" : p.source || "manual"}</span>
         <span class="badge">${p.flowName || (p.flowId === "6" ? "Flow Robo · 420" : p.flowId === "5" ? "Flow 5 · 456" : p.flowId === "4" ? "Flow 4 · 536" : p.flowId === "3" ? "Flow 3 · 746" : p.flowId === "2" ? "Flow 2 · 300" : "Flow 1 · 396")}</span>
         <span class="badge">${p.progress || 0}%</span>
       </div>
@@ -784,8 +784,29 @@ let es = null;
 let toastTimer = null;
 let refreshDebounce = null;
 
+function renderPhoneQueue(info) {
+  const el = $("#phoneQueue");
+  if (!el) return;
+  const rows = (info && info.recent) || [];
+  if (!rows.length) {
+    el.hidden = true;
+    el.innerHTML = "";
+    return;
+  }
+  el.hidden = false;
+  el.innerHTML =
+    `<div class="phone-queue-label">From phone</div>` +
+    rows
+      .map((r) => {
+        const st = r.status || "pending";
+        return `<div class="phone-queue-row"><a href="${escapeHtml(r.link)}" target="_blank" rel="noopener">${escapeHtml(shortLink(r.link))}</a><span class="badge">${escapeHtml(st)}</span></div>`;
+      })
+      .join("");
+}
+
 function setPhonePill(info) {
   const pill = $("#phonePill");
+  renderPhoneQueue(info);
   if (!pill) return;
   pill.classList.remove("muted", "phone-on", "phone-err");
   if (!info || !info.enabled) {
